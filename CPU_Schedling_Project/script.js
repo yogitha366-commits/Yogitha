@@ -219,12 +219,20 @@ function updateTable(list) {
 // Step 5: Draw Gantt Chart
 function drawGantt(list) {
   const gantt = document.getElementById("ganttChart");
-  gantt.innerHTML="";
-  list.forEach(p=>{
-    const block=document.createElement("div");
-    block.className="gantt-block";
-    block.style.width=(p.end-p.start)*30+"px"; // width proportional to time
-    block.innerText=p.pid;
+  gantt.innerHTML = "";
+
+  const colors = [
+    "#ff6b6b", "#4ecdc4", "#45b7d1",
+    "#f9ca24", "#6c5ce7", "#e84393",
+    "#00b894"
+  ];
+
+  list.forEach((p, index) => {
+    const block = document.createElement("div");
+    block.className = "gantt-block";
+    block.style.width = (p.end - p.start) * 35 + "px";
+    block.style.backgroundColor = colors[index % colors.length];
+    block.innerText = p.pid;
     gantt.appendChild(block);
   });
 }
